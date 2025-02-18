@@ -1,0 +1,57 @@
+.container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+#list{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+input{
+    text-align: center;
+    width: 50vw;
+    height: 10vh;
+}
+input:focus{
+    outline: none;
+}
+#add{
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 20vw;
+    border-radius: 10px;
+    height: 10vh;
+    font-weight: bold;
+    font-size: large;
+}
+.edit{
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: large;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 8vw;
+    border-radius: 5px;
+    height: 8vh;
+}
+.del{
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: large;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 8vw;
+    border-radius: 5px;
+    height: 8vh;
+}
