@@ -1,52 +1,43 @@
-function add() {
-    let getInp = document.getElementById('inp');
 
-    let getValue = getInp.value
-    if (getValue === "") {
-        alert('Please Enter an word')
-        return;
+let getValue = document.getElementById('inp');
+let store = JSON.parse(localStorage.getItem('todo')) || [];
+
+function rander(){
+    let list = document.getElementById('list');
+    list.innerHTML = "";
+    for (let i = 0; i < store.length; i++) {
+        list.innerHTML += `
+            <li>
+                <span>${store[i]}</span> 
+                <button  class="edit" onclick="editItem(${i})">Edit</button> 
+                <button  class="del" onclick="deleteItem(${i})">Del</button>
+            </li>`;
     }
-
-    let createParent = document.createElement('ul');
-
-    let createChild = document.createElement('li');
-    createParent.appendChild(createChild)
- 
-    createChild.innerHTML = `<span>${getValue}</span><button onclick="edit()" class="edit">Edit</button><button onclick="del()" class="del">Del</button> `   
-    
-   
-
-    console.log(createChild);
-    
-
-    let getId = document.getElementById('list');
-    getId.appendChild(createParent)
-
-    console.log(getId);
-
-    getInp.value = ""
-    
 }
 
-function edit() {
-    let changeWord = prompt("Enter word")
-    let inp = document.getElementById('inp')
-    let value = inp.value
-
-   if(value == ""){
-   let change = value = changeWord
-   document.body.childNodes[3].lastChild.childNodes[0].childNodes[0].innerText = change;
-   console.log(change);
-   
-   }else{
-    alert('Side issues')
-   }
-
-   
-   
+function add(){
+    if (getValue.value.trim() !== "") {
+        store.push(getValue.value);
+        localStorage.setItem('todo', JSON.stringify(store));
+        rander();
+        getValue.value = "";
+    } else {
+        alert("Input field is empty!");
+    }
 }
 
-function del() {
-   let delId = document.getElementById('list')
-   delId.remove()
+function deleteItem(index) {
+    store.splice(index, 1);
+    localStorage.setItem('todo', JSON.stringify(store));
+    rander();
 }
+
+function editItem(index) {
+    let newValue = prompt("Edit your item:", store[index]);
+    if (newValue !== null && newValue.trim() !== "") {
+        store[index] = newValue;
+        localStorage.setItem('todo', JSON.stringify(store));
+        rander();
+    }
+}
+rander();
